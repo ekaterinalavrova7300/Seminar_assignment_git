@@ -1,0 +1,73 @@
+#' DEG_analysis
+#' @description Create a table containing differential expressed genes
+#' (using the filtered count_table) that
+#' are filtered according to Log2 fold change and FDR
+#' @param filtered_count_table Count-table without low-counts filtered by CPM
+#' @param sample_table computer path to the sample_table
+#' @param fdr_threshold False discovery rate used for filtering DEGs
+#' @param logFC_threshold Log2 fold change used for filtering DEGs
+#' @examples
+#' # example code
+#'  DEG_analysis =
+#'  function (filtered_count_table,
+#'  sample_table, fdr_threshold = 0.05,
+#'  logFC_threshold = 1 )
+#'
+#'
+#' @return A data frame of filtered DEGs
+#' @export
+#' @import edgeR
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+
+
+#Create a function which only keeps the most significant DEGs and filteres them
+DGE_analysis = function(filtered_count_table,sample_table, fdr_threshold = 0.05,
+                        logFC_threshold = 1 ){
+
+  #Import sample_table
+  sample_table = read.delim(sample_table, header = TRUE, sep = "\t")
+  #Creates a DGEList by combining counts and condition of sample (disease or not)
+  dgelist = DGEList(counts = filtered_count_table,
+                group = sample_table$disease)
+
+  design = model.matrix(~ disease, data = sample_table )
+
+  #Normalization for library size
+  normalized_dgelist = calcNormFactors(dgelist)
+
+
+  #Estimates dispersion of counts, accounts for variability
+   dge_dispersion= estimateDisp(normalized_dgelist, design)
+
+  #fits linear model to each gene
+  fit = glmFit(dge_dispersion, design)
+
+  #Likelihood ration test, creates a table with statistical results such as Containing Log2FC and FDR
+  LRT = glmLRT(fit, coef = 2)
+
+  #Creates a data frame from LRT data
+  DEG_df = as.data.frame(LRT$table)
+
+  #Add FDR to the dataframe
+  DEG_df$FDR = p.adjust(DEG_df$PValue,method = "BH")
+
+
+  #Filter away genes with too low Log2fold change and too high false discovery rate
+  filtered_DEG = DEG_df[abs(DEG_df$logFC)> logFC_threshold & DEG_df$FDR <fdr_threshold,]
+
+  return(filtered_DEG)
+}
+
+
+
+
+
+
+
