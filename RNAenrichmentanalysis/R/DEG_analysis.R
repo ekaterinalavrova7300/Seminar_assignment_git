@@ -8,7 +8,7 @@
 #' @param logFC_threshold Log2 fold change used for filtering DEGs
 #' @examples
 #' # example code
-#' sample_table_path = system.file("extdata","sample_table.txt",package = "RNAenrichmentanalysis")
+#' sample_table_path = system.file("extdata","E-MTAB-2523_sample_table.txt",package = "RNAenrichmentanalysis")
 #'  DEG_analysis =
 #'  function (filtered_count_table,
 #'  sample_table = sample_table_path,
@@ -25,15 +25,17 @@
 
 
 #Create a function which only keeps the most significant DEGs and filteres them
-DGE_analysis = function(filtered_count_table,sample_table, fdr_threshold = 0.05,
+DEG_analysis = function(filtered_count_table,sample_table, fdr_threshold = 0.05,
                         logFC_threshold = 1 ){
 
   #Import sample_table
   sample_table = read.delim(sample_table, header = TRUE, sep = "\t")
+
   #Creates a DGEList by combining counts and condition of sample (disease or not)
   dgelist = DGEList(counts = filtered_count_table,
                 group = sample_table$disease)
 
+  #Produces a matrix indicating which sample that belongs to which group
   design = model.matrix(~ disease, data = sample_table )
 
   #Normalization for library size

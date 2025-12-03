@@ -4,12 +4,14 @@
 \alias{import_and_filter_data}
 \title{import_and_filter_data}
 \usage{
-import_and_filter_data(count_table, min_CPM = 1)
+import_and_filter_data(count_table, min_CPM = 1, min_sample = 2)
 }
 \arguments{
 \item{count_table}{computer path to the count_table}
 
 \item{min_CPM}{Minimum threshold for filtering}
+
+\item{min_sample}{Minimum samples that pass the cpm threshold for every gene}
 }
 \value{
 Filtered count table
@@ -17,12 +19,15 @@ Filtered count table
 \description{
 Imports count_table using the file path
 then filters the low expressed genes in the count_table
-based on CPM
+based on per sample CPM
 }
 \examples{
- Filtered_count_table = import_and_filter_data(
- count_table = "counts_table.txt",
- min_CPM = 1
+count_table_path = system.file("extdata","E-MTAB-2523.counts.txt",package = "RNAenrichmentanalysis")
+filtered_count_table = import_and_filter_data(
+count_table = count_table_path,
+min_CPM = 1,
+min_sample = 2
 )
+
 
 }
