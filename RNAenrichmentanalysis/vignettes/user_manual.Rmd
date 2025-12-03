@@ -27,7 +27,7 @@ library(devtools)
 
 #Package isntallaation from Github
 library(devtools)
-devtools::install_github("ekaterinalavrova7300/Seminar_assignment_git@Question_1_and_2", subdir = "RNAenrichmentanalysis")
+devtools::install_github("ekaterinalavrova7300/Seminar_assignment_git", subdir = "RNAenrichmentanalysis")
 library(RNAenrichmentanalysis)
 
 #Dependencies installation 
@@ -46,12 +46,14 @@ if(!requireNamespace("edgeR", quietly = TRUE))
 ```{r import_and_filter}
 
 #import data 
-count_table = system.file("extdata","E-MTAB-2523.counts",package = "RNAenrichmentanalysis")
-sample_table = system.file("extdata","E-MTAB-2523_sample_table",package = "RNAenrichmentanalysis")
+count_table_path = system.file("extdata","E-MTAB-2523.counts.txt",package = "RNAenrichmentanalysis")
+sample_table_path = system.file("extdata","E-MTAB-2523_sample_table.txt",package = "RNAenrichmentanalysis")
 
 #Filter count_table 
 filtered_counts = import_and_filter_data(
-  count_table, min_CPM = 1
+  count_table = count_table_path, 
+  min_CPM = 1,
+  min_sample = 2
 )
 
 #print head of filtered count table 
@@ -65,6 +67,7 @@ head(filtered_counts)
 #Create a DGE table and filter it 
 filtered_DEGs = DEG_analysis(
   filtered_count_table =filtered_counts,
+  sample_table = sample_table_path,
   fdr_threshold = 0.05,
   logFC_threshold = 1
 )
