@@ -1,0 +1,82 @@
+---
+title: "user_manual_RNAenrichmentanalysis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{user_manual}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Package and dependency installation: ##
+Dependencies that need to be installed. And installation of package from github.
+
+The package depends on bioconductor  package edgeR.
+```{r setup}  
+#Package installation 
+#Install devtools if not installed 
+if(!requireNamespace("devtools", quietly = TRUE))
+   install.packages("devtools")
+library(devtools)
+
+#Package isntallaation from Github
+library(devtools)
+devtools::install_github("ekaterinalavrova7300/Seminar_assignment_git@Question_1_and_2", subdir = "RNAenrichmentanalysis")
+library(RNAenrichmentanalysis)
+
+#Dependencies installation 
+#Bioconductor if not already isntalled 
+if(!requireNamespace("BiocManager", quietly = TRUE))
+   install.packages("BiocManager")
+
+#install edgeR 
+if(!requireNamespace("edgeR", quietly = TRUE))
+  BiocManager::install("edgeR")
+
+```
+
+## Example workflow ##
+
+```{r import_and_filter}
+
+#import data 
+count_table = system.file("extdata","E-MTAB-2523.counts",package = "RNAenrichmentanalysis")
+sample_table = system.file("extdata","E-MTAB-2523_sample_table",package = "RNAenrichmentanalysis")
+
+#Filter count_table 
+filtered_counts = import_and_filter_data(
+  count_table, min_CPM = 1
+)
+
+#print head of filtered count table 
+head(filtered_counts)
+
+
+```
+
+```{r Differential_gene_expression }
+
+#Create a DGE table and filter it 
+filtered_DEGs = DEG_analysis(
+  filtered_count_table =filtered_counts,
+  fdr_threshold = 0.05,
+  logFC_threshold = 1
+)
+
+#print head of filtered DEG table
+head(filtered_DEGs)
+
+```
+
+
+## Function explanation ##
+The import_and_filter_data function Imports the count_table and filters it using the CPM method from edgR. The DEG_analysis function takes these counts and and produces a DEG list which is then filtered based on log2FC and FDR. 
+
+
+## Plots and results  ##

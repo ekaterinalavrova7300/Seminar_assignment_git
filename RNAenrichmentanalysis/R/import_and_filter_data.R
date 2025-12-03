@@ -12,9 +12,10 @@
 #'
 #'
 #'@examples
-#'  Filtered_count_table = import_and_filter_data(
-#'  count_table = "counts_table.txt",
-#'  min_CPM = 1
+#'count_table_path = system.file("extdata","count_table.txt",package = "RNAenrichmentanalysis")
+#'Filtered_count_table = import_and_filter_data(
+#' count_table = count_table_path,
+#' min_CPM = 1
 #' )
 #'
 #' @export

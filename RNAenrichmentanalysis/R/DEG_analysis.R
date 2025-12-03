@@ -8,20 +8,17 @@
 #' @param logFC_threshold Log2 fold change used for filtering DEGs
 #' @examples
 #' # example code
+#' sample_table_path = system.file("extdata","sample_table.txt",package = "RNAenrichmentanalysis")
 #'  DEG_analysis =
 #'  function (filtered_count_table,
-#'  sample_table, fdr_threshold = 0.05,
+#'  sample_table = sample_table_path,
+#'  fdr_threshold = 0.05,
 #'  logFC_threshold = 1 )
 #'
 #'
 #' @return A data frame of filtered DEGs
 #' @export
 #' @import edgeR
-#'
-#'
-#'
-#'
-#'
 #'
 #'
 #'
