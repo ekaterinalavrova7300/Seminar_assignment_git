@@ -9,8 +9,8 @@
 #' @examples
 #' # example code
 #' sample_table_path = system.file("extdata","E-MTAB-2523_sample_table.txt",package = "RNAenrichmentanalysis")
-#'  DEG_analysis =
-#'  function (filtered_count_table,
+#'  filtered_DEG =
+#'  DEG_analysis (filtered_count_table,
 #'  sample_table = sample_table_path,
 #'  fdr_threshold = 0.05,
 #'  logFC_threshold = 1 )
