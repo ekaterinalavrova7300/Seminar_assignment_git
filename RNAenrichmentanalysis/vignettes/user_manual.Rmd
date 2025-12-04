@@ -65,7 +65,7 @@ head(filtered_counts)
 ```{r Differential_gene_expression }
 
 #Create a DGE table and filter it 
-filtered_DEGs = DEG_analysis(
+filtered_DEG = DEG_analysis(
   filtered_count_table =filtered_counts,
   sample_table = sample_table_path,
   fdr_threshold = 0.05,
@@ -73,7 +73,7 @@ filtered_DEGs = DEG_analysis(
 )
 
 #print head of filtered DEG table
-head(filtered_DEGs)
+head(filtered_DEG)
 
 ```
 
