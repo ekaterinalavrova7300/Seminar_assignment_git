@@ -22,7 +22,7 @@
 
 
 #Create function
-Over_representation_analysis= function(filtered_DEG, GO="ALL", ){
+Over_representation_analysis= function(filtered_DEG, GO="ALL"){
 
   #taking the gene IDs to use for conversion
   ENTIDs=rownames(filtered_DEG)
