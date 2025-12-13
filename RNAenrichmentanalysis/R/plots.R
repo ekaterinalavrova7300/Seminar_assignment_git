@@ -1,7 +1,7 @@
 #'plots
 #'@description
-#'take the data from Over_representation (OR_data)
-#'
+#'take the data from Over_representation (OR_data) and define category number
+#'create 3 different plots based on the data
 #'
 #'
 #'@param OR_data a list of the GO data and KEGG data for the graphs ensure you use the $ to specify results of the enrichment
@@ -10,9 +10,9 @@
 #'@return returns an excel document with the DEG data
 #'
 #'@example
-#' Plots<- function(OR_data, )
+#' Plots<- function(OR_data$GO, categories="20")
 #'
-#'@import openxlsx enrichplot ggplot2
+#'@import openxlsx enrichplot
 #'@export
 #'
 
