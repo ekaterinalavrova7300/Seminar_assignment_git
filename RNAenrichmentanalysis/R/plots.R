@@ -10,14 +10,14 @@
 #'@return returns an excel document with the DEG data
 #'
 #'@example
-#' Plots<- function(OR_data$GO, categories="20")
+#' Plots<- function(OR_data$GO, categories=20)
 #'
 #'@import openxlsx enrichplot
 #'@export
 #'
 
 #Plot function defining the inputs
-Plots<- function(OR_data, categories="20"){
+Plots<- function(OR_data, categories=20){
 
   #tree plot
   OR_termsim<- pairwise_termsim(OR_data)
