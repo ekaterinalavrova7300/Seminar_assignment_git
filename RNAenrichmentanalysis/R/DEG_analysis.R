@@ -15,7 +15,8 @@
 #'  DEG_analysis (filtered_count_table,
 #'  sample_table = sample_table_path,
 #'  fdr_threshold = 0.05,
-#'  logFC_threshold = 1, excel_file= NULL )
+#'  logFC_threshold = 1,
+#'  excel_file= NULL )
 #'
 #'
 #' @return A data frame of filtered DEGs
