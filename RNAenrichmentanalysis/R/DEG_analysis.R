@@ -75,7 +75,7 @@ DEG_analysis = function(filtered_count_table,sample_table, fdr_threshold = 0.05,
     writeData(wb, "DEG Data", filtered_DEG)
 
     #save the data into the excel file
-    saveWorkbook(wb, file = excel_file, overwrite = true)
+    saveWorkbook(wb, file = excel_file, overwrite = TRUE)
     
   }
   return(filtered_DEG)
