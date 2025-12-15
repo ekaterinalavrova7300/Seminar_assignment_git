@@ -3,7 +3,7 @@
 #' (using the filtered count_table) that
 #' are filtered according to Log2 fold change and FDR
 #' @param filtered_count_table Count-table without low-counts filtered by CPM
-#' @param sample_table computer path to the sample_table
+#' @param sample_table_path computer path to the sample_table
 #' @param fdr_threshold False discovery rate used for filtering DEGs
 #' @param logFC_threshold Log2 fold change used for filtering DEGs
 #' @examples

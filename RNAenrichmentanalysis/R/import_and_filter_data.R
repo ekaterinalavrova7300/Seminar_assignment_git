@@ -4,7 +4,7 @@
 #'then filters the low expressed genes in the count_table
 #'based on per sample CPM
 #'
-#'@param count_table computer path to the count_table
+#'@param count_table_path computer path to the count_table
 #'@param min_CPM Minimum threshold for filtering
 #'@param min_sample Minimum samples that pass the cpm threshold for every gene
 #'
