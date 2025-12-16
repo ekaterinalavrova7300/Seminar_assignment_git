@@ -103,7 +103,7 @@ head(OR_data$KEGG)
 head(OR_data$GO)
 ```
 
-```{r Plots }
+```{r Plots, fig.width=6, fig.height=4}
 #creating the GO data plots
 GODATA<-OR_data$GO
 PlotsG<- Plots(GODATA, categories=20)
@@ -113,14 +113,14 @@ KEGGDATA<- OR_data$KEGG
 PlotsK<- Plots(KEGGDATA, categories=20)
 
 #printing the GO data plots
-PlotsG$tree
-PlotsG$dot
-PlotsG$net_plot
+print(PlotsG$tree)
+print(PlotsG$dot)
+print(PlotsG$net_plot)
 
 #printing the KEGG data plots
-PlotsK$tree
-PlotsK$dot
-PlotsK$net_plot
+print(PlotsK$tree)
+print(PlotsK$dot)
+print(PlotsK$net_plot)
 
 ```
 
