@@ -106,11 +106,11 @@ head(OR_data$GO)
 ```{r Plots }
 #creating the GO data plots
 GODATA<-OR_data$GO
-PlotsG<- function(GODATA, categories=20)
+PlotsG<- Plots(GODATA, categories=20)
 
 #creating the KEGG data plots
 KEGGDATA<- OR_data$KEGG
-PlotsK<- function(KEGGDATA, categories=20)
+PlotsK<- Plots(KEGGDATA, categories=20)
 
 #printing the GO data plots
 PlotsG$tree
