@@ -30,7 +30,7 @@ Plots<- function(OR_data, categories=20){
   netplot<- cnetplot(OR_data, showCategory=categories, color.params = list(foldChange=NULL))
 
   #list of plots that will be returned
-  allplots<-list(tree_plot=tree, dot_plot=dot, net_plot<-netplot)
+  allplots<-list(tree_plot = tree, dot_plot = dot, net_plot = netplot)
 
   return(allplots)
 
