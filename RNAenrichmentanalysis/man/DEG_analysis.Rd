@@ -8,17 +8,20 @@ DEG_analysis(
   filtered_count_table,
   sample_table,
   fdr_threshold = 0.05,
-  logFC_threshold = 1
+  logFC_threshold = 1,
+  excel_file = NULL
 )
 }
 \arguments{
 \item{filtered_count_table}{Count-table without low-counts filtered by CPM}
 
-\item{sample_table}{computer path to the sample_table}
-
 \item{fdr_threshold}{False discovery rate used for filtering DEGs}
 
 \item{logFC_threshold}{Log2 fold change used for filtering DEGs}
+
+\item{excel_file}{name of the excel life to be printed: NULL is default.}
+
+\item{sample_table_path}{computer path to the sample_table}
 }
 \value{
 A data frame of filtered DEGs
@@ -27,6 +30,7 @@ A data frame of filtered DEGs
 Create a table containing differential expressed genes
 (using the filtered count_table) that
 are filtered according to Log2 fold change and FDR
+optionally you can add excel_file to print an excel life with the data
 }
 \examples{
 # example code
@@ -35,7 +39,8 @@ sample_table_path = system.file("extdata","E-MTAB-2523_sample_table.txt",package
  DEG_analysis (filtered_count_table,
  sample_table = sample_table_path,
  fdr_threshold = 0.05,
- logFC_threshold = 1 )
+ logFC_threshold = 1,
+ excel_file= NULL )
 
 
 }
