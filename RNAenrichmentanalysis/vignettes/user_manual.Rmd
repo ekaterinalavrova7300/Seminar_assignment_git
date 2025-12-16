@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ## Package and dependency installation: ##
 Dependencies that need to be installed. And installation of package from github.
 
-The package depends on bioconductor  package edgeR.
+The package depends on openxlsx, and bioconductor packages: edgeR, clusterProfiler, enrichplot, and org.Hs.eg.db.
 ```{r setup}  
 #Package installation 
 #Install devtools if not installed 
@@ -38,6 +38,22 @@ if(!requireNamespace("BiocManager", quietly = TRUE))
 #install edgeR 
 if(!requireNamespace("edgeR", quietly = TRUE))
   BiocManager::install("edgeR")
+
+#install openxlsx
+if(!requireNamespace("openxlsx", quietly = TRUE))
+   install.packages("openxlsx")
+
+#install clusterProfiler
+if(!requireNamespace("clusterProfiler", quietly = TRUE))
+  BiocManager::install("clusterProfiler")
+
+#install enrichplot
+if(!requireNamespace("enrichplot", quietly = TRUE))
+  BiocManager::install("enrichplot")
+
+#install org.Hs.eg.db
+if(!requireNamespace("org.Hs.eg.db", quietly = TRUE))
+  BiocManager::install("org.Hs.eg.db")
 
 ```
 
@@ -69,7 +85,8 @@ filtered_DEG = DEG_analysis(
   filtered_count_table =filtered_counts,
   sample_table = sample_table_path,
   fdr_threshold = 0.05,
-  logFC_threshold = 1
+  logFC_threshold = 1,
+  excel_file= NULL
 )
 
 #print head of filtered DEG table
@@ -77,9 +94,38 @@ head(filtered_DEG)
 
 ```
 
+```{r Over_representation}
+#take the data and do and Over representation analysis,
+OR_data<- Over_representation_analysis(filtered_DEG, GO="ALL")
+
+#print heads of OR data for KEGG and GO KEGG being for biochemical pathways, and GO for the aforementioned categories
+head(OR_data$KEGG)
+head(OR_data$GO)
+```
+
+```{r Plots }
+#creating the GO data plots
+PlotsG<- function(OR_data$GO, categories=20)
+#creating the KEGG data plots  
+PlotsK<- function(OR_data$KEGG, categories=20)
+
+#printing the GO data plots
+PlotsG$tree
+PlotsG$dot
+PlotsG$netplot
+
+#printing the KEGG data plots
+PlotsK$tree
+PlotsK$dot
+PlotsK$netplot
+
+```
 
 ## Function explanation ##
 The import_and_filter_data function Imports the count_table and filters it using the CPM method from edgR. The DEG_analysis function takes these counts and and produces a DEG list which is then filtered based on log2FC and FDR. 
 
+Over_representation takes up the DEG data filtered data and  returns as a list, GO ALL means it looks at all categories
+BP for biological pathways, MF for molecular function, and CC for cellular component. KEGG on the other hand accesses all biochemical pathways
 
 ## Plots and results  ##
+Plots show an over representation of genes connected to hormone synthesis in the Thyroid as well as calcium absorption in addition to bone development. These terms were also present when testing the categories in GO as there was an over representation of genes connected to gland development as well as sodium ion transport and more importantly genes connected to the development of the skeleton, kidneys and the creation of organs in general showing 
