@@ -2,10 +2,12 @@
 #' @description Create a table containing differential expressed genes
 #' (using the filtered count_table) that
 #' are filtered according to Log2 fold change and FDR
+#' optionally you can add excel_file to print an excel life with the data
 #' @param filtered_count_table Count-table without low-counts filtered by CPM
 #' @param sample_table_path computer path to the sample_table
 #' @param fdr_threshold False discovery rate used for filtering DEGs
 #' @param logFC_threshold Log2 fold change used for filtering DEGs
+#' @param excel_file name of the excel life to be printed: NULL is default.
 #' @examples
 #' # example code
 #' sample_table_path = system.file("extdata","E-MTAB-2523_sample_table.txt",package = "RNAenrichmentanalysis")
@@ -13,12 +15,13 @@
 #'  DEG_analysis (filtered_count_table,
 #'  sample_table = sample_table_path,
 #'  fdr_threshold = 0.05,
-#'  logFC_threshold = 1 )
+#'  logFC_threshold = 1,
+#'  excel_file= NULL )
 #'
 #'
 #' @return A data frame of filtered DEGs
 #' @export
-#' @import edgeR
+#' @import edgeR openxlsx
 #'
 #'
 #'
@@ -26,7 +29,7 @@
 
 #Create a function which only keeps the most significant DEGs and filteres them
 DEG_analysis = function(filtered_count_table,sample_table, fdr_threshold = 0.05,
-                        logFC_threshold = 1 ){
+                        logFC_threshold = 1, excel_file= NULL ){
 
   #Import sample_table
   sample_table = read.delim(sample_table, header = TRUE, sep = "\t")
@@ -61,6 +64,20 @@ DEG_analysis = function(filtered_count_table,sample_table, fdr_threshold = 0.05,
   #Filter away genes with too low Log2fold change and too high false discovery rate
   filtered_DEG = DEG_df[abs(DEG_df$logFC)> logFC_threshold & DEG_df$FDR <fdr_threshold,]
 
+  #creating an if part of the function if the excel_file is not true
+  if (!is.null(excel_file)){
+    wb= createWorkbook()
+
+    #add worksheet to write the data on
+    addWorksheet(wb, "DEG Data")
+
+    #put the data on the sheet
+    writeData(wb, "DEG Data", filtered_DEG)
+
+    #save the data into the excel file
+    saveWorkbook(wb, file = excel_file, overwrite = TRUE)
+    
+  }
   return(filtered_DEG)
 }
 
