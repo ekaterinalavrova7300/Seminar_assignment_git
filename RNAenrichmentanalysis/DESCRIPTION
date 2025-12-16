@@ -13,5 +13,10 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-Imports: edgeR
+Imports: 
+    edgeR,
+    clusterProfiler,
+    org.Hs.eg.db,
+    openxlsx,
+    enrichplot
 
