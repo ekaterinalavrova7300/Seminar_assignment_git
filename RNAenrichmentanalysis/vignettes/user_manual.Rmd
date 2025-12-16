@@ -115,12 +115,12 @@ PlotsK<- Plots(KEGGDATA, categories=20)
 #printing the GO data plots
 PlotsG$tree
 PlotsG$dot
-PlotsG$netplot
+PlotsG$net_plot
 
 #printing the KEGG data plots
 PlotsK$tree
 PlotsK$dot
-PlotsK$netplot
+PlotsK$net_plot
 
 ```
 
