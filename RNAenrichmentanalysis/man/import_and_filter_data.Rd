@@ -7,11 +7,11 @@
 import_and_filter_data(count_table, min_CPM = 1, min_sample = 2)
 }
 \arguments{
-\item{count_table}{computer path to the count_table}
-
 \item{min_CPM}{Minimum threshold for filtering}
 
 \item{min_sample}{Minimum samples that pass the cpm threshold for every gene}
+
+\item{count_table_path}{computer path to the count_table}
 }
 \value{
 Filtered count table
