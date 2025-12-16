@@ -12,7 +12,7 @@ Further the second function takes the filtered count table and generates a diffe
 In addition you can request that the function also create an excel file of the data by naming it and storing it as an xlsx
 
 The remaining functions use enrichGO and enrichKEGG from the cluster profiler package to perform enrichment analysis on the DEGs. Returning a list including both the EnrichKEGG and EnrichGO resutls
-Further, plots of the enrichment analysis are created. The function returns 6 plot list representing the enrichment analysis results of either GO or KEGG as requested. 
+Further, plots of the enrichment analysis are created. The function returns 3 plot list representing the enrichment analysis results of either GO or KEGG as requested. 
 In summary the package performs gene expression analysis and enrichment analysis. Comparing pathway enrichment between cancer and healthy patients.  
 
 
