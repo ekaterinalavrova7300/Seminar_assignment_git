@@ -12,7 +12,7 @@
 #'@return data results from the Over representation analysis named OR_data
 #'
 #'@examples
-#'Over_representation_analysis(filtered_DEG, GO="ALL")
+#'OR_data<- Over_representation_analysis(filtered_DEG, GO="ALL")
 #'to call upon GO data OR_data$GO for KEGG OR_data$KEGG
 #'
 #'
