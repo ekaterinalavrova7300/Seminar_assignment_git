@@ -30,7 +30,7 @@ library(devtools)
 devtools::install_github(
   "ekaterinalavrova7300/Seminar_assignment_git", 
   subdir = "RNAenrichmentanalysis",
-  build_vignettes = True )
+  build_vignettes = TRUE )
 library(RNAenrichmentanalysis)
 
 #Dependencies installation 
