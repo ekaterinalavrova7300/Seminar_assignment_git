@@ -25,13 +25,16 @@ if(!requireNamespace("devtools", quietly = TRUE))
    install.packages("devtools")
 library(devtools)
 
-#Package isntallaation from Github
+#Package installaation from Github
 library(devtools)
-devtools::install_github("ekaterinalavrova7300/Seminar_assignment_git", subdir = "RNAenrichmentanalysis")
+devtools::install_github(
+  "ekaterinalavrova7300/Seminar_assignment_git", 
+  subdir = "RNAenrichmentanalysis",
+  build_vignettes = True )
 library(RNAenrichmentanalysis)
 
 #Dependencies installation 
-#Bioconductor if not already isntalled 
+#Bioconductor if not already installed 
 if(!requireNamespace("BiocManager", quietly = TRUE))
    install.packages("BiocManager")
 
